@@ -1,9 +1,14 @@
-var boardCounter = 0
 var colors = ['Aquamarine', 'CornflowerBlue', 'DeepPink', 'Indigo']
 var cardColor = "GhostWhite"
+
 var colorIndex = 0
-var defaultCols = "col-4"
+var boardCounter = 0
+
 var debugCallback = () => console.log("click")
+
+var defaultCols = "col-4"
+var quadroClass = "align-self-start quadro " + defaultCols
+var cardClass = "row card"
 
 function adicionarQuadro(){
     var element = document.getElementById("board-columns");
@@ -22,7 +27,7 @@ function adicionarCard(id){
 function getQuadro(){ 
     var quadro = document.createElement("div")
     quadro.id = `quadro-${boardCounter}`
-    quadro.className = defaultCols
+    quadro.className = quadroClass
     quadro.style = `background-color: ${getColor()};`
     
     var text = document.createTextNode("Novo Quadro");
@@ -37,7 +42,7 @@ function getQuadro(){
 
 function getCard(title, callback){//Todo use callback when click to open card
     var card = document.createElement("div")
-    card.className = "row"
+    card.className = cardClass
     card.style = `background-color: ${cardColor};`
     
     var text = document.createTextNode(title);
@@ -48,11 +53,9 @@ function getCard(title, callback){//Todo use callback when click to open card
 function getButton(text){
     var btn = document.createElement("button")
 
-    btn.className = "col-md-4 offset-md-4"
-    btn.style = `background-color: LightGreen;`
-
     var text = document.createTextNode(text);
     btn.append(text)
+    btn.className = "col-md-4 add"
     return btn
 }
 
