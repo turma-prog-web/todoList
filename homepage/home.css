@@ -1,0 +1,35 @@
+html {
+    background-color: #C5CFD6;
+}
+
+header:first-child {
+    margin-top: 40px;
+    margin-left: 0px;
+    background-color: #C5CFD6;
+}
+
+body {
+    background-color: #C5CFD6;
+}
+
+body .container {
+    background-color: #C5CFD6;
+}
+
+.card-user-img {
+    width: 25px;
+    height: 25px;
+}
+
+.list-group {
+    padding-left: 12px;
+    background-color: #C5CFD6;
+}
+
+.list-group a {
+    width: 80%;
+}
+
+.search-box {
+    width: 300px;
+}
