@@ -3,11 +3,16 @@ async function getTodos(){
 }
 
 function mockQuadroList(){
-    return [ mockQuadro("TODO"), mockQuadro("Doing")]
+    return [ mockQuadro("TODO"), mockQuadro2("Doing")]
 }
 
 function mockQuadro(titulo){
-    var  tarefas = [Tarefa("Modelar Banco"), Tarefa("Integração com AWS"), Tarefa("Matar o php"), Tarefa("Dar comida pro gato") ]
+    var  tarefas = [Tarefa("Modelar Banco"), Tarefa("Integração com AWS"), Tarefa("Matar o php") ]
+    return Quadro(titulo, tarefas)
+}
+
+function mockQuadro2(titulo){
+    var  tarefas = [ Tarefa("Dar comida pro gato") , Tarefa("Lavar louça") ]
     return Quadro(titulo, tarefas)
 }
 

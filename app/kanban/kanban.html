@@ -12,6 +12,10 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+      </script>
+
   <script type="text/javascript" src="js/kanban.js"></script>
   <script type="text/javascript" src="../utils/request.js"></script>
   <script type="text/javascript" src="js/kanbanRequest.js"></script>
@@ -32,8 +36,8 @@
         <div class="input-group">
           <input id="inputText" type="text" class="form-control " placeholder="Buscar">
           <div class="input-group-append ">
-            <button class="input-group-text" type="button">
-              <i onclick="getTodos()" class="material-icons">
+            <button  id="filtrarBTN" onclick="filtrarTarefas()" class="input-group-text" type="button">
+              <i  class="material-icons">
                 search
               </i>
             </button>

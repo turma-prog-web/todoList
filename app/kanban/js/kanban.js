@@ -9,10 +9,17 @@ var defaultCols = "col-4"
 var quadroClass = "align-self-start quadro " + defaultCols
 var cardClass = "row card"
 
+var lastQuadroId = 0
+
+function clearBoard(){
+    var element = document.getElementById("board-columns");
+    element.innerHTML = null
+}
+
 function adicionarQuadro(){
     var element = document.getElementById("board-columns");
     var titulo = document.getElementById("inputText").value
-    var quadro = getQuadro(titulo)
+    var quadro = getQuadro(++lastQuadroId,  titulo)
     element.appendChild(quadro);
 }
 
@@ -25,15 +32,14 @@ function adicionarCard(id, titulo){
 
 //Todo separar em módulos
 //Ui Providers ------------------------------------------------------------------------------
-function getQuadro(titulo){ 
+function getQuadro(id, titulo){ 
+    lastQuadroId = id
     var quadro = document.createElement("div")
-    quadro.id = `quadro-${++boardCounter}`
+    quadro.id = `quadro-${id}`
     quadro.className = quadroClass
     quadro.style = `background-color: ${getColor()};`
     
-   
-    
-    quadro.append(quadroHeader(titulo, boardCounter))
+    quadro.append(quadroHeader(titulo, id))
     
     return quadro
 }
