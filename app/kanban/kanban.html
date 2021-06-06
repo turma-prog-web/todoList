@@ -13,6 +13,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script type="text/javascript" src="kanban.js"></script>
+  <script type="text/javascript" src="../utils/request.js"></script>
+  <script type="text/javascript" src="kanbanRequest.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="kanban.css">
 
 
@@ -29,7 +32,7 @@
           <input id="inputText" type="text" class="form-control " placeholder="Buscar">
           <div class="input-group-append ">
             <button class="input-group-text" type="button">
-              <i class="material-icons">
+              <i onclick="getTodos()" class="material-icons">
                 search
               </i>
             </button>
