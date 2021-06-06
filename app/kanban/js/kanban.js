@@ -11,30 +11,29 @@ var cardClass = "row card"
 
 function adicionarQuadro(){
     var element = document.getElementById("board-columns");
-    var quadro = getQuadro()
+    var titulo = document.getElementById("inputText").value
+    var quadro = getQuadro(titulo)
     element.appendChild(quadro);
 }
 
-function adicionarCard(id){
+/* Cria um novo card na tela, caso tiulo seja null usa nome default*/
+function adicionarCard(id, titulo){
     var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard("Nova tarefa")
+    var card = getCard(titulo == null ? "Nova Tarefa" : titulo)
     quadro.append(card)
 }
 
 //Todo separar em módulos
 //Ui Providers ------------------------------------------------------------------------------
-function getQuadro(){ 
+function getQuadro(titulo){ 
     var quadro = document.createElement("div")
     quadro.id = `quadro-${++boardCounter}`
     quadro.className = quadroClass
     quadro.style = `background-color: ${getColor()};`
     
-    var titulo = document.getElementById("inputText").value
+   
     
     quadro.append(quadroHeader(titulo, boardCounter))
-    
-    
-    
     
     return quadro
 }
