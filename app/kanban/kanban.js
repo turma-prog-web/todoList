@@ -3,8 +3,7 @@ var cardColor = "GhostWhite"
 
 var colorIndex = 0
 var boardCounter = 0
-
-var debugCallback = () => console.log("click")
+var cardCounter = 0
 
 var defaultCols = "col-4"
 var quadroClass = "align-self-start quadro " + defaultCols
@@ -18,7 +17,7 @@ function adicionarQuadro(){
 
 function adicionarCard(id){
     var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard("Nova tarefa", debugCallback)
+    var card = getCard("Nova tarefa")
     quadro.append(card)
 }
 
@@ -26,28 +25,49 @@ function adicionarCard(id){
 //Ui Providers ------------------------------------------------------------------------------
 function getQuadro(){ 
     var quadro = document.createElement("div")
-    quadro.id = `quadro-${boardCounter}`
+    quadro.id = `quadro-${++boardCounter}`
     quadro.className = quadroClass
     quadro.style = `background-color: ${getColor()};`
     
-    var text = document.createTextNode("Novo Quadro");
-    quadro.append(text)
-
-    var button = getButton("+")
-    button.setAttribute('onClick', `adicionarCard(${boardCounter})`)
-    quadro.append(button)
-    boardCounter++
+    var titulo = document.getElementById("inputText").value
+    
+    quadro.append(quadroHeader(titulo, boardCounter))
+    
+    
+    
+    
     return quadro
 }
 
-function getCard(title, callback){//Todo use callback when click to open card
+function quadroHeader(titulo, id){
+    var header = `
+    <div id="quadroHeader" class="row mb-2">
+        <div class="row col"> <h5 class="my-3">${titulo}</h5> </div>
+        <div class="col-3 mt-2">
+        <button class="col  btn  btn-info add" onclick="adicionarCard(${id})"> <i
+            class="material-icons">add</i></button>
+        </div>
+    </div>
+    `
+    var div = document.createElement('div')
+    div.innerHTML = header.trim();
+    return div.firstChild;
+}
+
+function getCard(title){//Todo use callback when click to open card
     var card = document.createElement("div")
+    card.id = `card-${++cardCounter}`
     card.className = cardClass
     card.style = `background-color: ${cardColor};`
     
     var text = document.createTextNode(title);
     card.append(text)
+    card.setAttribute('onClick', `onCardClick(${cardCounter})`)
     return card
+}
+
+function onCardClick(id){
+    console.log("click : " + id )
 }
 
 function getButton(text){
