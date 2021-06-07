@@ -3,6 +3,8 @@
 /* Método chamado após carregamento do body para inicializar os dados em tela */
 var quadros = []
 var board = null
+var cardCounter = 0
+var lastQuadroId = 0
 
 function init(){
     keyListener()
@@ -12,7 +14,13 @@ function init(){
     loadQuadros()
 }
 
+/* Limpa a div que contem as colunas dos quadros*/
+function clearBoard(){
+    var element = document.getElementById("board-columns");
+    element.innerHTML = null
+}
 
+/* Com base no array quadros carrega em tela o kanban*/
 function loadQuadros(){
     clearBoard()
     quadros.forEach((q, index) => {
@@ -25,6 +33,7 @@ function loadQuadros(){
     })
 }
 
+/* Altera o array quadros para a filtragem e chama loadQuadros()*/
 function filtrarTarefas(){
     quadros = mockQuadroList()
     var busca = document.getElementById("inputText").value
@@ -42,6 +51,7 @@ function filtrarTarefas(){
     loadQuadros()
 }
 
+/* Configura para enter pressionar botão de pesquisa */
 function keyListener(){
     var enterKey = '13'
     $("#inputText").keypress(function(event) {
@@ -57,3 +67,20 @@ function keyListener(){
     })
 }
 
+
+
+
+/* Cria um novo quadro usando a barra de pesquisa como título*/
+function adicionarQuadro(){
+    var element = document.getElementById("board-columns");
+    var titulo = document.getElementById("inputText").value
+    var quadro = getQuadro(++lastQuadroId,  titulo)
+    element.appendChild(quadro);
+}
+
+/* Cria um novo card na tela, caso tiulo seja null usa nome default*/
+function adicionarCard(id, titulo){
+    var quadro = document.getElementById(`quadro-${id}`)
+    var card = getCard(titulo == null ? "Nova Tarefa" : titulo)
+    quadro.append(card)
+}

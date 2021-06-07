@@ -1,36 +1,3 @@
-var colors = ['Aquamarine', 'CornflowerBlue', 'DeepPink', 'Indigo']
-var cardColor = "GhostWhite"
-
-var colorIndex = 0
-var boardCounter = 0
-var cardCounter = 0
-
-var defaultCols = "col-4"
-var quadroClass = "align-self-start quadro " + defaultCols
-var cardClass = "row card"
-
-var lastQuadroId = 0
-
-function clearBoard(){
-    var element = document.getElementById("board-columns");
-    element.innerHTML = null
-}
-
-function adicionarQuadro(){
-    var element = document.getElementById("board-columns");
-    var titulo = document.getElementById("inputText").value
-    var quadro = getQuadro(++lastQuadroId,  titulo)
-    element.appendChild(quadro);
-}
-
-/* Cria um novo card na tela, caso tiulo seja null usa nome default*/
-function adicionarCard(id, titulo){
-    var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard(titulo == null ? "Nova Tarefa" : titulo)
-    quadro.append(card)
-}
-
-//Todo separar em módulos
 //Ui Providers ------------------------------------------------------------------------------
 function getQuadro(id, titulo){ 
     lastQuadroId = id
@@ -59,15 +26,15 @@ function quadroHeader(titulo, id){
     return div.firstChild;
 }
 
-function getCard(title){//Todo use callback when click to open card
+function getCard(title, cardId){
     var card = document.createElement("div")
-    card.id = `card-${++cardCounter}`
+    card.id = `card-${cardId}`
     card.className = cardClass
     card.style = `background-color: ${cardColor};`
     
     var text = document.createTextNode(title);
     card.append(text)
-    card.setAttribute('onClick', `onCardClick(${cardCounter})`)
+    card.setAttribute('onClick', `onCardClick(${cardId})`)
     return card
 }
 
@@ -82,14 +49,4 @@ function getButton(text){
     btn.append(text)
     btn.className = "col-md-4 add"
     return btn
-}
-
-//Get color from colors global and increment index or return to 0
-function getColor(){ 
-    var color = colors[colorIndex]
-    if(colorIndex < colors.length - 1)
-        colorIndex++
-    else
-        colorIndex = 0
-    return color
 }
