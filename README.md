@@ -5,6 +5,6 @@ Ministrada por @hsborges
 
 Carlos Alberto de Jesus Pereira Neto
 Eduardo Tôrres
-Lucca Damico Diniz
 Gabriel Rabelo de Melo
-Juliano Nepomuceno
+Lucca Damico Diniz
+Juliano Nepomuceno Carvalho
