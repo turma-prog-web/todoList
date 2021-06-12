@@ -10,9 +10,10 @@
     rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="home.css">
         <script src="../utils/router.js"></script>
+        <script src="main.js"></script>
         
     </head>
-    <body>
+    <body onload="init()">
         <header>
             <div class="container">
                 <h1>Home Page</h1>
@@ -29,26 +30,8 @@
             </div>
         </header>
         
-        <div class="container list-group">
-            <a href="../kanban/kanban.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Título Lista 1</h5>
-                </div>
-                <small>
-                    <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
-                    <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
-                </small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Título Lista 2</h5>
-                </div>
-                <small>
-                    <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
-                    <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
-                    <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
-                </small>
-            </a>
+        <div id="container-lista" class="container list-group">
+            <!--gerado pelo getLista()-->
         </div>
     </body>
 </html>
