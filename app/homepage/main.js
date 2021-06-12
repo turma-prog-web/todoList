@@ -1,14 +1,5 @@
 //TODO capturar listas do bd
-var listas = [
-    {
-        id: 1,
-        titulo: "Banana"
-    },
-    {
-        id: 2,
-        titulo: "Maçã"
-    }
-];
+var listas = [];
 
 function getListaElement(id, titulo) {
     var listaElement = `
@@ -28,7 +19,7 @@ function getListaElement(id, titulo) {
     return div.firstChild;
 }
 
-function getLista(){ 
+function getListas(){ 
     var container = document.getElementById("container-lista");
 
     listas.forEach( l => {
@@ -42,5 +33,53 @@ function openKanban(id) {
 }
 
 function init() {
-    getLista();
+    mockListas();
+    getListas();
+    keyListener();
+}
+
+function buscarListas(){
+    clearListas()
+    mockListas()
+    var busca = document.getElementById("inputText").value
+    var filtrado =  []
+    listas.forEach( l => {
+        if(l.titulo.toUpperCase().includes(busca.toUpperCase()))
+            filtrado.push(l)
+    })
+    listas = filtrado
+    getListas()
+}
+
+function mockListas(){
+    listas = [
+        {
+            id: 1,
+            titulo: "Banana"
+        },
+        {
+            id: 2,
+            titulo: "Maçã"
+        }
+    ];
+}
+
+function clearListas(){
+    var element = document.getElementById("container-lista");
+    element.innerHTML = null
+}
+
+function keyListener(){
+    var enterKey = '13'
+    $("#inputText").keypress(function(event) {
+        if (event.keyCode == enterKey) {
+            $("#filtrarBTN").click();
+        }
+    })
+
+    $("#filtrarBTN").keypress(function(event) {
+        if (event.keyCode == enterKey) {
+            $("#filtrarBTN").click();
+        }
+    })
 }
