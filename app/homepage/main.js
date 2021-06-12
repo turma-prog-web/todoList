@@ -83,3 +83,20 @@ function keyListener(){
         }
     })
 }
+
+function adicionarLista(){
+    clearListas()
+    var titulo = document.getElementById("inputText-titulo").value
+    listas.push({id:3, titulo})
+    getListas()
+}
+
+function abrirModal(){
+    var modal = document.getElementById("modalNovaLista")
+    modal.style.display = "block"
+}
+
+function fecharModal(){
+    var modal = document.getElementById("modalNovaLista")
+    modal.style.display = "none"
+}
