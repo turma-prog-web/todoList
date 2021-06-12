@@ -1,7 +1,7 @@
 class router {
-    kanban = "todoList/app/kanban/"
-    home = "todoList/app/homepage/"
-    login = "todoList/app/login/"
+    kanban = "app/kanban/"
+    home = "app/homepage/"
+    login = "app/login/"
 
     constructor(){}
 
