@@ -16,7 +16,7 @@ function quadroHeader(titulo, id){
     <div id="quadroHeader" class="row mb-2">
         <div class="row col"> <h5 class="my-3">${titulo}</h5> </div>
         <div class="col-3 mt-2">
-        <button class="col  btn  btn-info add" onclick="adicionarCard(${id})"> <i
+        <button class="col  btn  btn-info add" onclick="abrirModal(${id})"> <i
             class="material-icons">add</i></button>
         </div>
     </div>
@@ -26,16 +26,24 @@ function quadroHeader(titulo, id){
     return div.firstChild;
 }
 
-function getCard(title, cardId){
-    var card = document.createElement("div")
-    card.id = `card-${cardId}`
-    card.className = cardClass
-    card.style = `background-color: ${cardColor};`
+
+function getCard(text, id){
+    var header = `
+    <div id="card-${id}" class="${cardClass}" style="background-color: ${cardColor};" onclick="onCardClick(${id})">
+    <div class="col">${text}
     
-    var text = document.createTextNode(title);
-    card.append(text)
-    card.setAttribute('onClick', `onCardClick(${cardId})`)
-    return card
+    <button class="btn" onclick="deletaCard(${id})">
+        <i class="material-icons">
+            close
+        </i>
+    </button>
+    
+    </div>
+    </div>
+    `
+    var div = document.createElement('div')
+    div.innerHTML = header.trim();
+    return div.firstChild;   
 }
 
 function onCardClick(id){

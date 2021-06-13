@@ -89,6 +89,8 @@ function adicionarLista(){
     var titulo = document.getElementById("inputText-titulo").value
     listas.push({id:3, titulo})
     getListas()
+    document.getElementById("inputText-titulo").value = ""
+    fecharModal()
 }
 
 function abrirModal(){

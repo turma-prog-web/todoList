@@ -3,8 +3,9 @@
 /* Método chamado após carregamento do body para inicializar os dados em tela */
 var quadros = []
 var board = null
-var cardCounter = 0
+var lastCardId = 0
 var lastQuadroId = 0
+var idQuadroAtual = 0
 
 function init(){
     keyListener()
@@ -71,9 +72,8 @@ function keyListener(){
 
 
 /* Cria um novo quadro usando a barra de pesquisa como título*/
-function adicionarQuadro(){
+function adicionarQuadro(titulo){
     var element = document.getElementById("board-columns");
-    var titulo = document.getElementById("inputText").value
     var quadro = getQuadro(++lastQuadroId,  titulo)
     element.appendChild(quadro);
 }
@@ -81,6 +81,57 @@ function adicionarQuadro(){
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
 function adicionarCard(id, titulo){
     var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard(titulo == null ? "Nova Tarefa" : titulo)
+    var card = getCard(titulo, ++lastCardId)
     quadro.append(card)
+    fecharModal()
 }
+
+function deletaCard(id){
+    //TODO
+    //MANDAR API DELETAR E PEDE PARA ATUALIZAR
+        
+}
+
+function adicionarCardForm(){
+    var titulo = document.getElementById("inputText-titulo").value
+    var id = idQuadroAtual
+    adicionarCard(id, titulo)
+}
+
+function adicionarQuadroForm(){
+    var titulo = document.getElementById("inputText-titulo").value
+    adicionarQuadro(titulo)
+}
+
+function abrirModal(id){
+    document.getElementById("tituloModal").innerText = "Nova tarefa"
+    idQuadroAtual = id
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "block"
+}
+
+function abrirModalQuadro(){
+    document.getElementById("tituloModal").innerText = "Novo quadro"
+    idQuadroAtual = -1
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "block"
+}
+
+function salvarModal(){
+    var isNovoQuadro = idQuadroAtual < 0
+    if(isNovoQuadro){
+        adicionarQuadroForm()
+    }
+    else{
+        adicionarCardForm()
+    }
+    document.getElementById("inputText-titulo").value = ""
+    fecharModal()
+}
+
+function fecharModal(){
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "none"
+}
+
+
