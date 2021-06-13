@@ -16,7 +16,7 @@ function quadroHeader(titulo, id){
     <div id="quadroHeader" class="row mb-2">
         <div class="row col"> <h5 class="my-3">${titulo}</h5> </div>
         <div class="col-3 mt-2">
-        <button class="col  btn  btn-info add" onclick="abrirModal(${id})"> <i
+        <button class="col  btn  btn-info add" onclick="abrirModal('${id}')"> <i
             class="material-icons">add</i></button>
         </div>
     </div>
@@ -29,10 +29,10 @@ function quadroHeader(titulo, id){
 
 function getCard(text, id){
     var header = `
-    <div id="card-${id}" class="${cardClass}" style="background-color: ${cardColor};" onclick="onCardClick(${id})">
+    <div id="card-${id}" class="${cardClass}" style="background-color: ${cardColor};" onclick="onCardClick('${id}')">
     <div class="col">${text}
     
-    <button class="btn" onclick="deletaCard(${id})">
+    <button class="btn" onclick="deletaCard('${id}')">
         <i class="material-icons">
             close
         </i>

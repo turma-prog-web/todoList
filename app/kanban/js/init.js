@@ -28,7 +28,8 @@ function loadQuadros(){
         var quadro = getQuadro(index, q.titulo)
         board.appendChild(quadro);
         q.tarefas.forEach(t => {
-            adicionarCard(index, t.titulo)
+            
+            adicionarCard(t.id, t.titulo)
         })
         
     })
@@ -80,22 +81,25 @@ function adicionarQuadro(titulo){
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
 function adicionarCard(id, titulo){
-    var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard(titulo, ++lastCardId)
+    var quadroId = 0 // TODO use api value
+    var quadro = document.getElementById(`quadro-${quadroId}`)
+    var card = getCard(titulo, id)
     quadro.append(card)
     fecharModal()
 }
 
-function deletaCard(id){
-    //TODO
-    //MANDAR API DELETAR E PEDE PARA ATUALIZAR
-
+async function deletaCard(id){
+    await deleteTasksById(id)
+    init()
 }
 
-function adicionarCardForm(){
+async function adicionarCardForm(){
     var titulo = document.getElementById("inputText-titulo").value
-    var id = idQuadroAtual
-    adicionarCard(id, titulo)
+    //var id = idQuadroAtual
+    //adicionarCard(id, titulo)
+    await postTask(titulo)
+    init()
+
 }
 
 function adicionarQuadroForm(){
@@ -117,13 +121,13 @@ function abrirModalQuadro(){
     modal.style.display = "block"
 }
 
-function salvarModal(){
+async function salvarModal(){
     var isNovoQuadro = idQuadroAtual < 0
     if(isNovoQuadro){
         adicionarQuadroForm()
     }
     else{
-        adicionarCardForm()
+        await adicionarCardForm()
     }
     document.getElementById("inputText-titulo").value = ""
     fecharModal()

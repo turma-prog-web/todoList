@@ -3,20 +3,16 @@ async function getTodos(){
 }
 
 async function mockQuadroList(){
-    return [ await mockQuadro("TODO")]
+    return [ await getApiQuadro("TODO")]
 }
 
-async function mockQuadro(titulo){
+async function getApiQuadro(titulo){ //Todo pegar da api
     var  apiTarefas = await getTasks()
-    var tarefas = apiTarefas.map(tarefa => Tarefa(tarefa.title, tarefa._id))
-    console.log(apiTarefas)
+    var tarefas = apiTarefas.map(tarefa => Tarefa(tarefa.title, tarefa._id, tarefa.labels, tarefa.users))
+    console.log("mapeado", tarefas)
     return Quadro(titulo, tarefas)
 }
 
-function mockQuadro2(titulo){
-    var  tarefas = [ Tarefa("Dar comida pro gato") , Tarefa("Lavar louça") ]
-    return Quadro(titulo, tarefas)
-}
 
 function Quadro( titulo, tarefas ){
     return  {
@@ -26,9 +22,11 @@ function Quadro( titulo, tarefas ){
 
 }
 
-function Tarefa(nome, id){
+function Tarefa(nome, id, labels, users){
     return {
         titulo : nome, 
-        id: id
+        id: id,
+        labels: labels,
+        users : users
     }
 }
