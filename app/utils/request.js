@@ -14,13 +14,11 @@
     }
   }
 
-  async function testGet() {
-      var url = "https://jsonplaceholder.typicode.com/posts"
-      var params = {
-          ID: 12345
-      }
+  async function getTasks() {
+      var url = "https://todo-list-prog-web.herokuapp.com/task"
       const response = await get(url, null)
-      console.log(response)
+      console.log(response.data.results)
+      return response.data.results
   }
 
   async function testPost(){

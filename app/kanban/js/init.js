@@ -7,9 +7,9 @@ var lastCardId = 0
 var lastQuadroId = 0
 var idQuadroAtual = 0
 
-function init(){
+async function init(){
     keyListener()
-    quadros = mockQuadroList()
+    quadros = await mockQuadroList()
     console.log("Updated quadros : " + quadros)
     board = document.getElementById("board-columns");
     loadQuadros()
@@ -89,7 +89,7 @@ function adicionarCard(id, titulo){
 function deletaCard(id){
     //TODO
     //MANDAR API DELETAR E PEDE PARA ATUALIZAR
-        
+
 }
 
 function adicionarCardForm(){

@@ -2,12 +2,14 @@ async function getTodos(){
     await testGet()
 }
 
-function mockQuadroList(){
-    return [ mockQuadro("TODO"), mockQuadro2("Doing")]
+async function mockQuadroList(){
+    return [ await mockQuadro("TODO")]
 }
 
-function mockQuadro(titulo){
-    var  tarefas = [Tarefa("Modelar Banco"), Tarefa("Integração com AWS"), Tarefa("Matar o php") ]
+async function mockQuadro(titulo){
+    var  apiTarefas = await getTasks()
+    var tarefas = apiTarefas.map(tarefa => Tarefa(tarefa.title, tarefa._id))
+    console.log(apiTarefas)
     return Quadro(titulo, tarefas)
 }
 
@@ -24,8 +26,9 @@ function Quadro( titulo, tarefas ){
 
 }
 
-function Tarefa( nome ){
+function Tarefa(nome, id){
     return {
-        titulo : nome 
+        titulo : nome, 
+        id: id
     }
 }
