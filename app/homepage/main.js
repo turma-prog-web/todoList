@@ -3,8 +3,8 @@ var listas = [];
 
 function getListaElement(id, titulo) {
     var listaElement = `
-    <a onclick="openKanban(${id})" id="lista-${id}" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
+    <a  onclick="openKanban(${id})" id="lista-${id}" class="rounded m-1 list-group-item list-group-item-action  ">
+        <div >
         <h5 class="mb-1">${titulo}</h5>
         </div>
         <small>
