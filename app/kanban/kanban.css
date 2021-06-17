@@ -30,12 +30,24 @@ body {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
+.label {
+    width: min-content;
+    height: auto;
+    border-radius: 50px;
+    font-size: 12px;
+    padding: 10px;
+    margin: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+
 .card {
     width: auto;
     height: auto;
     font-size: 14px;
     padding: 4px;
     margin: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 .search-box {
     width: 300px;
@@ -62,3 +74,4 @@ body {
     border: 1px solid #888;
     width: 80%; 
   }
+

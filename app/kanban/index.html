@@ -13,9 +13,8 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <script src=
-  "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-      </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+  </script>
 
   <script type="text/javascript" src="js/kanban.js"></script>
   <script type="text/javascript" src="../utils/request.js"></script>
@@ -38,8 +37,8 @@
         <div class="input-group">
           <input id="inputText" type="text" class="form-control " placeholder="Buscar">
           <div class="input-group-append ">
-            <button  id="filtrarBTN" onclick="filtrarTarefas()" class="input-group-text" type="button">
-              <i  class="material-icons">
+            <button id="filtrarBTN" onclick="filtrarTarefas()" class="input-group-text" type="button">
+              <i class="material-icons">
                 search
               </i>
             </button>
@@ -57,32 +56,39 @@
   <div id="board" class="container">
     <div id="board-columns" class="row board-columns container d-flex ">
       <!-- gerado dinamicamente -->
-      
+
     </div>
-    
+
   </div>
 
   <div id="modalNovo" class="modal">
     <div class="modal-content">
-        <h2 id="tituloModal">Titulo</h2>
-        <div class="row">
-            <div class="col">
-                <input id="inputText-titulo" type="text" class="form-control " placeholder="Titulo">
-            </div>
-        </div>
-         <div class="col flex-row-reverse">
-           <button id="filtrarBTN" onclick="salvarModal()" class="btn btn-success" type="button">
-                salvar
-            </button>
-            <button id="filtrarBTN" onclick="fecharModal()" class="btn btn-danger" type="button">
-                cancelar
-            </button>
-        </div>
+      <h2 id="tituloModal">Titulo</h2>
+      <div class="row">
+        <div class="col">
+          <input id="inputText-titulo" type="text" class="form-control " placeholder="Titulo">
+          <br>
+          <div id="labelDiv" class="col">
+            Adicionar Label 
+            <input id="inputText-label" type="text" class="form-control " placeholder="Status"  >
+            <input id="colorPicker" type="color"  onchange="clickColor(0, -1, -1, 5)" value="#ff0000" style="width:20%">
+         
+          </div>
+         </div>
+      </div>
+      <br>
+      <div class="col flex-row-reverse">
+        <button id="filtrarBTN" onclick="salvarModal()" class="btn btn-success" type="button">
+          SALVAR
+        </button>
+        <button id="filtrarBTN" onclick="fecharModal()" class="btn btn-danger" type="button">
+          CANCELAR
+        </button>
+      </div>
     </div>
-</div>
+  </div>
 
 
 </body>
 
 </html>
-

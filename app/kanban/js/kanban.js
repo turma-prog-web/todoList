@@ -1,15 +1,16 @@
 //Ui Providers ------------------------------------------------------------------------------
-function getQuadro(id, titulo){ 
+function getQuadro(id, titulo, status, color){ 
     lastQuadroId = id
     var quadro = document.createElement("div")
     quadro.id = `quadro-${id}`
     quadro.className = quadroClass
-    quadro.style = `background-color: ${getColor()};`
+    quadro.style = `background-color: ${color ?? getColor()};`
     
     quadro.append(quadroHeader(titulo, id))
     
     return quadro
 }
+
 
 function quadroHeader(titulo, id){
     var header = `
@@ -26,17 +27,32 @@ function quadroHeader(titulo, id){
     return div.firstChild;
 }
 
+function getLabels(labels){
+    retorno = ""
+    console.log("LABELS", labels)
+    labels.forEach( l =>{
+        retorno += `
+        <div id="quadroHeader" class="label" style="background-color: ${l.color};">
+        ${l.title}
+        </div>
+        `
+    })
+    return retorno
+}
 
-function getCard(text, id){
+function getCard(text, id, labels){
     var header = `
     <div id="card-${id}" class="${cardClass}" style="background-color: ${cardColor};" onclick="onCardClick('${id}')">
     <div class="col">${text}
     
-    <button class="btn" onclick="deletaCard('${id}')">
-        <i class="material-icons">
+    <button class="btn delete" onclick="deletaCard('${id}')">
+        <i class=" material-icons">
             close
         </i>
     </button>
+
+    ${getLabels(labels)}
+
     
     </div>
     </div>
@@ -52,9 +68,9 @@ function onCardClick(id){
 
 function getButton(text){
     var btn = document.createElement("button")
-
     var text = document.createTextNode(text);
     btn.append(text)
     btn.className = "col-md-4 add"
     return btn
 }
+

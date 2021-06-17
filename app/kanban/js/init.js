@@ -29,7 +29,7 @@ function loadQuadros(){
         board.appendChild(quadro);
         q.tarefas.forEach(t => {
             
-            adicionarCard(t.id, t.titulo)
+            adicionarCard(t.id, t.titulo, t.labels)
         })
         
     })
@@ -73,17 +73,17 @@ function keyListener(){
 
 
 /* Cria um novo quadro usando a barra de pesquisa como título*/
-function adicionarQuadro(titulo){
+function adicionarQuadro(titulo, status, color){
     var element = document.getElementById("board-columns");
-    var quadro = getQuadro(++lastQuadroId,  titulo)
+    var quadro = getQuadro(++lastQuadroId,  titulo, status, color)
     element.appendChild(quadro);
 }
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
-function adicionarCard(id, titulo){
+function adicionarCard(id, titulo, labels){
     var quadroId = 0 // TODO use api value
     var quadro = document.getElementById(`quadro-${quadroId}`)
-    var card = getCard(titulo, id)
+    var card = getCard(titulo, id, labels)
     quadro.append(card)
     fecharModal()
 }
@@ -95,20 +95,23 @@ async function deletaCard(id){
 
 async function adicionarCardForm(){
     var titulo = document.getElementById("inputText-titulo").value
-    //var id = idQuadroAtual
-    //adicionarCard(id, titulo)
-    await postTask(titulo)
+    var status = document.getElementById("inputText-label").value
+    var color = document.getElementById("colorPicker").value
+    await postTask(titulo, status, color)
     init()
 
 }
 
 function adicionarQuadroForm(){
     var titulo = document.getElementById("inputText-titulo").value
-    adicionarQuadro(titulo)
+    var status = document.getElementById("inputText-label").value
+    var color = document.getElementById("colorPicker").value
+    adicionarQuadro(titulo, status, color)
 }
 
 function abrirModal(id){
     document.getElementById("tituloModal").innerText = "Nova tarefa"
+    document.getElementById("labelDiv").style.display = "contents"
     idQuadroAtual = id
     var modal = document.getElementById("modalNovo")
     modal.style.display = "block"
@@ -116,6 +119,8 @@ function abrirModal(id){
 
 function abrirModalQuadro(){
     document.getElementById("tituloModal").innerText = "Novo quadro"
+    document.getElementById("labelDiv").style.display = "none"
+    
     idQuadroAtual = -1
     var modal = document.getElementById("modalNovo")
     modal.style.display = "block"
@@ -129,8 +134,14 @@ async function salvarModal(){
     else{
         await adicionarCardForm()
     }
-    document.getElementById("inputText-titulo").value = ""
+    limparCampos()
     fecharModal()
+}
+
+function limparCampos(){
+    document.getElementById("inputText-titulo").value = ""
+    document.getElementById("inputText-label").value = ""
+    document.getElementById("colorPicker").value = "#ff0000"
 }
 
 function fecharModal(){

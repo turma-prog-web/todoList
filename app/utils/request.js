@@ -29,9 +29,9 @@
       return response.data.results
   }
 
-  async function postTask(titulo){
+  async function postTask(titulo,status, color){
     var url = "https://todo-list-prog-web.herokuapp.com/task"
-    const response = await post(url, {title : titulo})
+    const response = await post(url, {title : titulo , labels:[ {title: status, color : color}] })
     console.log(response)
     return response.data
   }
