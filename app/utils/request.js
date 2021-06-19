@@ -22,8 +22,16 @@
     }
   }
 
-  async function getTasks() {
-      var url = "https://todo-list-prog-web.herokuapp.com/task"
+  async function put(url, params) {
+    try {
+        return await axios.put(url, params)
+    } catch (error) {
+        console.log("Request error : " + error)
+    }
+}
+
+  async function getTasks(id) {
+      var url = `https://todo-list-prog-web.herokuapp.com/task-column/${id}`
       const response = await get(url, null)
       console.log(response.data.results)
       return response.data.results
@@ -32,6 +40,13 @@
   async function postTask(titulo,status, color){
     var url = "https://todo-list-prog-web.herokuapp.com/task"
     const response = await post(url, {title : titulo , labels:[ {title: status, color : color}] })
+    console.log(response)
+    return response.data
+  }
+
+  async function addTaskToColumn(columnId, taskId){
+    var url = `https://todo-list-prog-web.herokuapp.com/task-column/${columnId}/add/${taskId}`
+    const response = await put(url, null)
     console.log(response)
     return response.data
   }
@@ -49,3 +64,10 @@
       const response = await post(url,params)
       console.log(response)
   }
+
+  async function getTaskBoard() {
+    var url = "https://todo-list-prog-web.herokuapp.com/task-board"
+    const response = await get(url, null)
+    console.log(response.data.results)
+    return response.data.results
+}

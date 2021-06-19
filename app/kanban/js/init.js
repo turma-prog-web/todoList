@@ -24,12 +24,13 @@ function clearBoard(){
 /* Com base no array quadros carrega em tela o kanban*/
 function loadQuadros(){
     clearBoard()
+    console.log("testando", quadros)
     quadros.forEach((q, index) => {
         var quadro = getQuadro(index, q.titulo)
         board.appendChild(quadro);
         q.tarefas.forEach(t => {
             
-            adicionarCard(t.id, t.titulo, t.labels)
+            adicionarCard(t.id, t.titulo, t.labels, q.id)
         })
         
     })
@@ -73,16 +74,17 @@ function keyListener(){
 
 
 /* Cria um novo quadro usando a barra de pesquisa como título*/
-function adicionarQuadro(titulo, status, color){
+function adicionarQuadro(quadroId, titulo, status, color){
     var element = document.getElementById("board-columns");
-    var quadro = getQuadro(++lastQuadroId,  titulo, status, color)
+    var quadro = getQuadro(quadroId,  titulo, status, color)
+    
     element.appendChild(quadro);
 }
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
-function adicionarCard(id, titulo, labels){
-    var quadroId = 0 // TODO use api value
+function adicionarCard(id, titulo, labels, quadroId){
     var quadro = document.getElementById(`quadro-${quadroId}`)
+    quadro.name = quadro.id
     var card = getCard(titulo, id, labels)
     quadro.append(card)
     fecharModal()
@@ -97,7 +99,10 @@ async function adicionarCardForm(){
     var titulo = document.getElementById("inputText-titulo").value
     var status = document.getElementById("inputText-label").value
     var color = document.getElementById("colorPicker").value
-    await postTask(titulo, status, color)
+    var taskData = await postTask(titulo, status, color)
+    var columnId = window.router.getParams()
+    await addTaskToColumn(columnId, taskData._id)
+    console.log("Alguma coisa antes!!!!!", taskData)
     init()
 
 }

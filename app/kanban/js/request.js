@@ -3,21 +3,28 @@ async function getTodos(){
 }
 
 async function mockQuadroList(){
-    return [ await getApiQuadro("TODO")]
+    var getApiQuadroh = getApiQuadro()
+    console.log(getApiQuadroh)
+    return await getApiQuadroh
 }
 
-async function getApiQuadro(titulo){ //Todo pegar da api
-    var  apiTarefas = await getTasks()
-    var tarefas = apiTarefas.map(tarefa => Tarefa(tarefa.title, tarefa._id, tarefa.labels, tarefa.users))
-    console.log("mapeado", tarefas)
-    return Quadro(titulo, tarefas)
+async function getApiQuadro(){
+    var id = window.router.getParams()
+    var  apiQuadros = await getTasks(id)
+    console.log(apiQuadros)
+    return apiQuadros.map(quadro => 
+        Quadro(quadro._id, quadro.title, quadro.tasks.map(t => 
+            Tarefa(t.title, t._id, t.labels, t.users)
+        ))
+    );
 }
 
 
-function Quadro( titulo, tarefas ){
+function Quadro(id, titulo, tarefas){
     return  {
         titulo : titulo,
-        tarefas : tarefas
+        tarefas : tarefas,
+        id: id
     };
 
 }
