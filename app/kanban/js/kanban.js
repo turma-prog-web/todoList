@@ -29,7 +29,6 @@ function quadroHeader(titulo, id){
 
 function getLabels(labels){
     retorno = ""
-    console.log("LABELS", labels)
     labels.forEach( l =>{
         retorno += `
         <div id="quadroHeader" class="label" style="background-color: ${l.color};">

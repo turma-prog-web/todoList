@@ -33,21 +33,28 @@
   async function getTasks(id) {
       var url = `https://todo-list-prog-web.herokuapp.com/task-column/${id}`
       const response = await get(url, null)
-      console.log(response.data.results)
+      console.log("GET task-column/:id", response.data.results)
+      return response.data.results
+  }
+
+  async function getTaskById(id){
+      var url = `https://todo-list-prog-web.herokuapp.com/task/${id}`
+      const response = await get(url, null)
+      console.log("GET /task/:id", response.data.results)
       return response.data.results
   }
 
   async function postTask(titulo,status, color){
     var url = "https://todo-list-prog-web.herokuapp.com/task"
     const response = await post(url, {title : titulo , labels:[ {title: status, color : color}] })
-    console.log(response)
-    return response.data
+    console.log("POST /task", response)
+    return response.data.result
   }
 
   async function addTaskToColumn(columnId, taskId){
     var url = `https://todo-list-prog-web.herokuapp.com/task-column/${columnId}/add/${taskId}`
     const response = await put(url, null)
-    console.log(response)
+    console.log("PUT task-colun/id/add/id",response)
     return response.data
   }
 
