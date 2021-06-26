@@ -1,31 +1,45 @@
-async function getTodos(){
-    await testGet()
+async function mockQuadroList(){
+    return await getApiQuadro()
 }
 
-function mockQuadroList(){
-    return [ mockQuadro("TODO"), mockQuadro2("Doing")]
+async function getApiQuadro(){
+    var id = window.router.getParams()
+    var  apiQuadros = await getTasks(id)
+    window.aq = apiQuadros
+    return apiQuadros.map( apiQuadro => QuadroFromApi(apiQuadro) )
 }
 
-function mockQuadro(titulo){
-    var  tarefas = [Tarefa("Modelar Banco"), Tarefa("Integração com AWS"), Tarefa("Matar o php") ]
-    return Quadro(titulo, tarefas)
+function QuadroFromApi(q){
+    return Quadro(
+        q._id,
+        q.title,
+        TarefasFromApi(q.tasks) 
+    )
 }
 
-function mockQuadro2(titulo){
-    var  tarefas = [ Tarefa("Dar comida pro gato") , Tarefa("Lavar louça") ]
-    return Quadro(titulo, tarefas)
+function TarefasFromApi(tasks){
+    return tasks.map(t => 
+        Tarefa(
+            t.title, 
+            t._id, 
+            t.labels, 
+            t.users))
 }
 
-function Quadro( titulo, tarefas ){
+function Quadro(id, titulo, tarefas){
     return  {
         titulo : titulo,
-        tarefas : tarefas
+        tarefas : tarefas,
+        id: id
     };
 
 }
 
-function Tarefa( nome ){
+function Tarefa(nome, id, labels, users){
     return {
-        titulo : nome 
+        titulo : nome, 
+        id: id,
+        labels: labels,
+        users : users
     }
 }

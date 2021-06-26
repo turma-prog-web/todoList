@@ -1,4 +1,4 @@
-var colors = ['Aquamarine', 'CornflowerBlue', 'DeepPink', 'Indigo']
+var colors = ['Aquamarine', 'CornflowerBlue', 'DeepPink']
 var cardColor = "GhostWhite"
 
 var colorIndex = 0

@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="estilo.css">
-    <title>Login</title>
+    <script src="../utils/router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
     <div class="login">
@@ -16,17 +18,26 @@
         <form action="">
 
             <p>Usuário</p>
-            <input type="text" name="" placeholder="Insira seu nome de usuário">
+            <input type="text" id="user" placeholder="Insira seu nome de usuário">
             <p>Senha</p>
-            <input type="password" name="" placeholder="Insira sua senha">
-            <input type="submit" name="" value="Login">
-            <a href="#">Esqueci minha senha</a><br>
-            <a href="#">Criar conta</a>
-
-
+            <input type="password" id="pass" placeholder="Insira sua senha">
+            <input type="button" value="Login" onclick="login()">
+            <a onclick="esqueciSenha()" href="#">Esqueci minha senha</a><br>
+            <a onclick="criaConta()" href="#">Criar conta</a>
+            
         </form>
 
+        <button onclick="gitHubLogin()" class="input-group-text" type="button">
+            <img src="../assets/git_logo.png" id="gitButton" height="45px">
+        </button>
         
+        <button onclick="googleLogin()" class="input-group-text" type="button">
+            <img src="../assets/google_logo.png" id="gitButton" height="45px">
+        </button>
+                
+
     </div>
+
+    
 </body>
 </html>

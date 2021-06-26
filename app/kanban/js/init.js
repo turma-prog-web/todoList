@@ -3,14 +3,15 @@
 /* Método chamado após carregamento do body para inicializar os dados em tela */
 var quadros = []
 var board = null
-var cardCounter = 0
+var lastCardId = 0
 var lastQuadroId = 0
+var idQuadroAtual = 0
 
-function init(){
+async function init(){
     keyListener()
-    quadros = mockQuadroList()
-    console.log("Updated quadros : " + quadros)
+    quadros = await mockQuadroList()
     board = document.getElementById("board-columns");
+    colorIndex = 0
     loadQuadros()
 }
 
@@ -23,11 +24,11 @@ function clearBoard(){
 /* Com base no array quadros carrega em tela o kanban*/
 function loadQuadros(){
     clearBoard()
-    quadros.forEach((q, index) => {
-        var quadro = getQuadro(index, q.titulo)
+    quadros.forEach( q  => {
+        var quadro = getQuadro(q.id, q.titulo)
         board.appendChild(quadro);
         q.tarefas.forEach(t => {
-            adicionarCard(index, t.titulo)
+            adicionarCard(t.id, t.titulo, t.labels, q.id)
         })
         
     })
@@ -71,16 +72,83 @@ function keyListener(){
 
 
 /* Cria um novo quadro usando a barra de pesquisa como título*/
-function adicionarQuadro(){
+function adicionarQuadro(quadroId, titulo, status, color){
     var element = document.getElementById("board-columns");
-    var titulo = document.getElementById("inputText").value
-    var quadro = getQuadro(++lastQuadroId,  titulo)
+    var quadro = getQuadro(quadroId,  titulo, status, color)
+    
     element.appendChild(quadro);
 }
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
-function adicionarCard(id, titulo){
-    var quadro = document.getElementById(`quadro-${id}`)
-    var card = getCard(titulo == null ? "Nova Tarefa" : titulo)
+function adicionarCard(id, titulo, labels, quadroId){
+    var quadro = document.getElementById(`quadro-${quadroId}`)
+
+    var card = getCard(titulo, id, labels)
     quadro.append(card)
+    fecharModal()
 }
+
+async function deletaCard(id){
+    await deleteTasksById(id)
+    init()
+}
+
+async function adicionarCardForm(){
+    var titulo = document.getElementById("inputText-titulo").value
+    var status = document.getElementById("inputText-label").value
+    var color = document.getElementById("colorPicker").value
+    var taskData = await postTask(titulo, status, color)
+    var columnId = idQuadroAtual
+    await addTaskToColumn(columnId, taskData._id)
+    init()
+
+}
+
+function adicionarQuadroForm(){
+    var titulo = document.getElementById("inputText-titulo").value
+    var status = document.getElementById("inputText-label").value
+    var color = document.getElementById("colorPicker").value
+    adicionarQuadro(titulo, status, color)
+}
+
+function abrirModal(id){
+    document.getElementById("tituloModal").innerText = "Nova tarefa"
+    document.getElementById("labelDiv").style.display = "contents"
+    idQuadroAtual = id
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "block"
+}
+
+function abrirModalQuadro(){
+    document.getElementById("tituloModal").innerText = "Novo quadro"
+    document.getElementById("labelDiv").style.display = "none"
+    
+    idQuadroAtual = -1
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "block"
+}
+
+async function salvarModal(){
+    var isNovoQuadro = idQuadroAtual < 0
+    if(isNovoQuadro){
+        adicionarQuadroForm()
+    }
+    else{
+        await adicionarCardForm()
+    }
+    limparCampos()
+    fecharModal()
+}
+
+function limparCampos(){
+    document.getElementById("inputText-titulo").value = ""
+    document.getElementById("inputText-label").value = ""
+    document.getElementById("colorPicker").value = "#ff0000"
+}
+
+function fecharModal(){
+    var modal = document.getElementById("modalNovo")
+    modal.style.display = "none"
+}
+
+
