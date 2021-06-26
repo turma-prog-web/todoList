@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="estilo.css">
     <script src="../utils/router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
@@ -21,9 +22,22 @@
             <p>Senha</p>
             <input type="password" id="pass" placeholder="Insira sua senha">
             <input type="button" value="Login" onclick="login()">
-            <a href="#">Esqueci minha senha</a><br>
-            <a href="#">Criar conta</a>
+            <a onclick="esqueciSenha()" href="#">Esqueci minha senha</a><br>
+            <a onclick="criaConta()" href="#">Criar conta</a>
+            
         </form>
+
+        <button onclick="gitHubLogin()" class="input-group-text" type="button">
+            <img src="../assets/git_logo.png" id="gitButton" height="45px">
+        </button>
+        
+        <button onclick="googleLogin()" class="input-group-text" type="button">
+            <img src="../assets/google_logo.png" id="gitButton" height="45px">
+        </button>
+                
+
     </div>
+
+    
 </body>
 </html>

@@ -1,6 +1,7 @@
 var listas = [];
 
 function getListaElement(id, titulo, users) {
+    console.log("GETLIST ", users)
     var listaElement = `
     <a  onclick="openKanban('${id}')" id="lista-${id}" class="rounded m-1 list-group-item list-group-item-action  ">
         <div >
@@ -20,7 +21,8 @@ function getListas(){
 
     listas.forEach( l => {
         container.append(getListaElement(l._id, l.title, l.users));
-        console.log("alguma coisa", l)
+        console.log("alguma coisa", l.users)
+        window.l = l
     });
     
 }
@@ -36,9 +38,9 @@ async function init() {
     keyListener();
 }
 
-function buscarListas(){
+async function buscarListas(){
     clearListas()
-    mockListas()
+    await mockListas()
     var busca = document.getElementById("inputText").value
     var filtrado =  []
     listas.forEach( l => {
@@ -73,10 +75,11 @@ function keyListener(){
     })
 }
 
-function adicionarLista(){
+async function adicionarLista(){
     clearListas()
     var titulo = document.getElementById("inputText-titulo").value
-    listas.push({id:3, titulo})
+    await postLista(titulo)
+    await mockListas();
     getListas()
     document.getElementById("inputText-titulo").value = ""
     fecharModal()

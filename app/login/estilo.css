@@ -7,7 +7,7 @@ body {
 
 .login {
     width: 320px;
-    height: 420px;
+    height: 440px;
     border: 2px solid #000;
     border-radius: 60px 30px 60px 30px;
     color: #fff;
@@ -87,4 +87,10 @@ h1 {
 .login a:hover {
     transition: 0.2s;
     color: #ff4d4d;
+}
+
+button{
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }

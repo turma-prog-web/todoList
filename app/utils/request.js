@@ -77,4 +77,11 @@
     const response = await get(url, null)
     console.log(response.data.results)
     return response.data.results
-}
+  }
+
+  async function postLista(titulo){
+    var url = "https://todo-list-prog-web.herokuapp.com/task-board"
+    var params = { title :'foo', body:'bar', userId: 1 }
+    const response = await post(url,{title: titulo})
+    console.log(response)
+  }
