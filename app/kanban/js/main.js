@@ -1,9 +1,7 @@
-
-
 /* Método chamado após carregamento do body para inicializar os dados em tela */
 var QUADROS = []
 var board = null
-
+//Usado para controlar a qual quadro a task esta relacionada
 var idQuadroAtual = 0
 
 async function init(){
@@ -65,9 +63,6 @@ function keyListener(){
     })
 }
 
-
-
-
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
 function adicionarCard(id, titulo, labels, quadroId){
     var quadro = document.getElementById(`cards-${quadroId}`)
@@ -105,6 +100,7 @@ async function adicionarQuadroForm(){
     init()
 }
 
+//MODAL --------
 function abrirModal(id){
     document.getElementById("tituloModal").innerText = "Nova tarefa"
     document.getElementById("labelDiv").style.display = "contents"
