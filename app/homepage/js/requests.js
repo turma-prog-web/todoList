@@ -1,3 +1,4 @@
+//Retorna as listas da API de acordo com o ID
 async function fetchListas(){
     var id  = window.router.getParams()
     return await getTaskBoard(id)

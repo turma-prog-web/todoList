@@ -13,7 +13,6 @@ function getListas(lista){
     var container = document.getElementById("container-lista");
     lista.forEach( l => {
         container.append(getListaElement(l._id, l.title, l.users));
-        window.l = l
     });
 }
 
@@ -70,4 +69,9 @@ function abrirModal(){
 function fecharModal(){
     var modal = document.getElementById("modalNovaLista")
     modal.style.display = "none"
+}
+
+async function deleteLista(id){
+    await deleteLista(id)
+    init()
 }

@@ -1,12 +1,16 @@
 //Gera um item da  lista
 function getListaElement(id, titulo, users) {
-    var listaElement = `
-    <a  onclick="openKanban('${id}')" id="lista-${id}" class="rounded m-1 list-group-item list-group-item-action  ">
+    var listaElement = `<div class="row" >
+    <a  onclick="openKanban('${id}')" id="lista-${id}" class="rounded m-1 list-group-item list-group-item-action">
         <div >
         <h5 class="mb-1">${titulo}</h5>
         </div>
         ${getUserHtml(users)}
+        
     </a>
+    <button class="col btn " onclick="deleteLista('${id}')"> <i
+            class="material-icons">close</i></button>
+    </div>
     `
     var div = document.createElement('div')
     div.innerHTML = listaElement.trim();
