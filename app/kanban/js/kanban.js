@@ -1,9 +1,9 @@
 //Ui Providers ------------------------------------------------------------------------------
 function getQuadro(id, titulo, status, color){ 
-    lastQuadroId = id
+ 
     var quadro = document.createElement("div")
     quadro.id = `quadro-${id}`
-    quadro.className = quadroClass
+    quadro.className = "align-self-start quadro col-4 " 
     quadro.style = `background-color: ${color ?? getColor()};`
     
     quadro.append(quadroHeader(titulo, id))
@@ -64,7 +64,7 @@ function getLabels(labels){
 
 function getCard(text, id, labels){
     var header = `
-    <div id="card-${id}" class="${cardClass}" style="background-color: ${cardColor};" onclick="onCardClick('${id}')">
+    <div id="card-${id}" class="row card" style="background-color: GhostWhite;" onclick="onCardClick('${id}')">
     <div class="col">${text}
     
     <button class="btn delete" onclick="deletaCard('${id}')">

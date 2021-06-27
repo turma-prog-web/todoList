@@ -9,6 +9,7 @@ header:first-child {
 }
 
 body {
+    margin: 1vh;
     background-color: #C5CFD6;
 }
 

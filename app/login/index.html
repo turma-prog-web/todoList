@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </head>
+
 <body>
     <div class="login">
-        <!--futuramente-->
-        <!--<img src="img/user.png" class="usuario" width="100" height="100" alt="">-->
-
         <h1>Login</h1>
         <form action="">
-
             <p>Usuário</p>
             <input type="text" id="user" placeholder="Insira seu nome de usuário">
             <p>Senha</p>
@@ -24,20 +22,16 @@
             <input type="button" value="Login" onclick="login()">
             <a onclick="esqueciSenha()" href="#">Esqueci minha senha</a><br>
             <a onclick="criaConta()" href="#">Criar conta</a>
-            
         </form>
 
         <button onclick="gitHubLogin()" class="input-group-text" type="button">
             <img src="../assets/git_logo.png" id="gitButton" height="45px">
         </button>
-        
+
         <button onclick="googleLogin()" class="input-group-text" type="button">
             <img src="../assets/google_logo.png" id="gitButton" height="45px">
         </button>
-                
 
     </div>
-
-    
 </body>
 </html>

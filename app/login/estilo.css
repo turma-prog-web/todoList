@@ -1,14 +1,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(img/bgop2.jpg);
     background-size: cover;  
+    background-color: #C5D0D6;
 }
 
 .login {
     width: 320px;
     height: 440px;
-    border: 2px solid #000;
     border-radius: 60px 30px 60px 30px;
     color: #fff;
     background-color: rgba(0,0,5,0.8);

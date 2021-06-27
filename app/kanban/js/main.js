@@ -1,18 +1,17 @@
 
 
 /* Método chamado após carregamento do body para inicializar os dados em tela */
-var quadros = []
+var QUADROS = []
 var board = null
-var lastCardId = 0
-var lastQuadroId = 0
+
 var idQuadroAtual = 0
 
 async function init(){
     keyListener()
-    quadros = await getApiQuadro()
+    QUADROS = await getApiQuadro()
     board = document.getElementById("board-columns");
     colorIndex = 0
-    loadQuadros()
+    loadQuadros(QUADROS)
 }
 
 /* Limpa a div que contem as colunas dos quadros*/
@@ -22,7 +21,7 @@ function clearBoard(){
 }
 
 /* Com base no array quadros carrega em tela o kanban*/
-function loadQuadros(){
+function loadQuadros(quadros){
     clearBoard()
     quadros.forEach( q  => {
         var quadro = getQuadro(q.id, q.titulo)
@@ -36,10 +35,9 @@ function loadQuadros(){
 
 /* Altera o array quadros para a filtragem e chama loadQuadros()*/
 async function filtrarTarefas(){
-    quadros = await getApiQuadro()
     var busca = document.getElementById("inputText").value
     var filtrado =  []
-    quadros.forEach( q => {
+    QUADROS.forEach( q => {
         var contem = false
         q.tarefas.forEach(t =>{
             if(t.titulo.toUpperCase().includes(busca.toUpperCase()))
@@ -48,8 +46,7 @@ async function filtrarTarefas(){
         if(contem)
             filtrado.push(q)
     })
-    quadros = filtrado
-    loadQuadros()
+    loadQuadros(filtrado)
 }
 
 /* Configura para enter pressionar botão de pesquisa */
@@ -68,13 +65,8 @@ function keyListener(){
     })
 }
 
-/* Cria um novo quadro usando a barra de pesquisa como título*/
-function adicionarQuadro(quadroId, titulo, status, color){
-    var element = document.getElementById("board-columns");
-    var quadro = getQuadro(quadroId,  titulo, status, color)
-    
-    element.appendChild(quadro);
-}
+
+
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
 function adicionarCard(id, titulo, labels, quadroId){

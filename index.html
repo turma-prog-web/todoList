@@ -5,20 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <script src="../app/utils/router.js"></script>
     <script>
         var {user, token} = parseQuery(window.location.search)
         var autenticado =  token != undefined && token.length > 0
-        
-        console.log("USER", user)
-        
         if(autenticado){
             var user = JSON.parse(user)
             window.router.goHome(user._id)
         }else
             window.router.goLogin()
-        
+
+        //Separa o retorno por oauth do login
         function parseQuery(queryString) {
             var query = {};
             var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
