@@ -9,20 +9,15 @@
     <script src="../utils/router.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
+    
 </head>
 
 <body>
-    <div class="login">
+    <div class="login container">
+        
         <h1>Login</h1>
-        <form action="">
-            <p>Usuário</p>
-            <input type="text" id="user" placeholder="Insira seu nome de usuário">
-            <p>Senha</p>
-            <input type="password" id="pass" placeholder="Insira sua senha">
-            <input type="button" value="Login" onclick="login()">
-            <a onclick="esqueciSenha()" href="#">Esqueci minha senha</a><br>
-            <a onclick="criaConta()" href="#">Criar conta</a>
-        </form>
+        
+        <div class="center">
 
         <button onclick="gitHubLogin()" class="input-group-text" type="button">
             <img src="../assets/git_logo.png" id="gitButton" height="45px">
@@ -31,7 +26,7 @@
         <button onclick="googleLogin()" class="input-group-text" type="button">
             <img src="../assets/google_logo.png" id="gitButton" height="45px">
         </button>
-
+        </div>
     </div>
 </body>
 </html>
