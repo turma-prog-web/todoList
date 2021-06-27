@@ -79,8 +79,8 @@
     return response
   }
 
-  async function getTaskBoard() {
-    var url = "https://todo-list-prog-web.herokuapp.com/task-board"
+  async function getTaskBoard(userId) {
+    var url = `https://todo-list-prog-web.herokuapp.com/task-board/${userId}/get-all`
     const response = await get(url, null)
     console.log(response.data.results)
     return response.data.results

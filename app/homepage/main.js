@@ -52,7 +52,8 @@ async function buscarListas(){
 }
 
 async function mockListas(){
-    listas = await getTaskBoard()
+    var id  = window.router.getParams()
+    listas = await getTaskBoard(id)
 }
 
 function clearListas(){
