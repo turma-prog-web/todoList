@@ -4,7 +4,7 @@ Sistema Web tido como nota parcial para a disciplina de Programmação para Web 
 Ministrada por @hsborges
 
 Carlos Alberto de Jesus Pereira Neto  
-Eduardo Tôrres  
+Eduardo Torres Ferreira  
 Gabriel Rabelo de Melo  
 Lucca Damico Diniz  
 Juliano Nepomuceno Carvalho  
