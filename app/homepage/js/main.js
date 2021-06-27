@@ -1,7 +1,7 @@
 var LISTAS = [];
 
 //Função de inicialização
-async function init() {
+async function inithome() {
     LISTAS = await fetchListas();
     getListas(LISTAS);
     keyListener();
@@ -72,6 +72,6 @@ function fecharModal(){
 }
 
 async function deleteLista(id){
-    await deleteLista(id)
-    init()
+    await deleteTaskBoard(id)
+    inithome()
 }

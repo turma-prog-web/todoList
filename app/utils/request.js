@@ -92,7 +92,7 @@
     console.log(response)
   }
 
-  async function deleteLista(id) {
+  async function deleteTaskBoard(id) {
     var url = `https://todo-list-prog-web.herokuapp.com/task-board/${id}`
     const response = await remove(url, null)
     console.log("Delete Board By id : ", response)
