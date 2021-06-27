@@ -78,7 +78,8 @@ function keyListener(){
 async function adicionarLista(){
     clearListas()
     var titulo = document.getElementById("inputText-titulo").value
-    await postLista(titulo)
+    var id = window.router.getParams()
+    await postLista(titulo, id )
     await mockListas();
     getListas()
     document.getElementById("inputText-titulo").value = ""
@@ -101,9 +102,13 @@ function getUserHtml(users){
     users.forEach( l =>{
         retorno += `
         <small>
-            <img src="../assets/default-user-image.png" class="rounded-circle card-user-img">
+            <img src="${getUserPicture(l)}" class="rounded-circle card-user-img">
         </small>
         `
     })
     return retorno
+}
+
+function getUserPicture(user){
+    return user.picture || "../assets/default-user-image.png"
 }

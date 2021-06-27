@@ -86,9 +86,8 @@
     return response.data.results
   }
 
-  async function postLista(titulo){
+  async function postLista(titulo, id ){
     var url = "https://todo-list-prog-web.herokuapp.com/task-board"
-    var params = { title :'foo', body:'bar', userId: 1 }
-    const response = await post(url,{title: titulo})
+    const response = await post(url, {title: titulo, users:[id] } )
     console.log(response)
   }
