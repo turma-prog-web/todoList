@@ -23,11 +23,14 @@ body {
 
 
 .quadro {
-    height: 800px;
+    height: auto;
     margin: 4px;
     width: 18rem;
     border-radius: 25px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+.cards {
+    height: 60vh;
 }
 
 .label {

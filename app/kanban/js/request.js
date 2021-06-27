@@ -1,7 +1,3 @@
-async function mockQuadroList(){
-    return await getApiQuadro()
-}
-
 async function getApiQuadro(){
     var id = window.router.getParams()
     var  apiQuadros = await getTasks(id)

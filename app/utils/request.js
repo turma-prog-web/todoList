@@ -58,6 +58,13 @@
     return response.data
   }
 
+  async function postTaskColumn(titulo, id){
+    var url = "https://todo-list-prog-web.herokuapp.com/task-column"
+    const response = await post(url, {title : titulo, taskboard: id })
+    console.log("POST /task", response)
+    return response.data.result
+  }
+
   async function deleteTasksById(id) {
     var url = `https://todo-list-prog-web.herokuapp.com/task/${id}`
     const response = await remove(url, null)
@@ -65,11 +72,11 @@
     return response
 }
 
-  async function testPost(){
-      var url = 'https://jsonplaceholder.typicode.com/posts'
-      var params = { title :'foo', body:'bar', userId: 1 }
-      const response = await post(url,params)
-      console.log(response)
+  async function deleteTasksColumnById(id) {
+    var url = `https://todo-list-prog-web.herokuapp.com/task-column/${id}`
+    const response = await remove(url, null)
+    console.log("Delete Column By id : ", response)
+    return response
   }
 
   async function getTaskBoard() {

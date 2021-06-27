@@ -7,8 +7,27 @@ function getQuadro(id, titulo, status, color){
     quadro.style = `background-color: ${color ?? getColor()};`
     
     quadro.append(quadroHeader(titulo, id))
-    
+    var tasks = document.createElement("div")
+    tasks.className = "cards"
+    tasks.id=`cards-${id}`
+    quadro.append(tasks)
+    quadro.append(getFAB(id))
+
     return quadro
+}
+
+
+function getFAB(id){
+    var fab = `
+    <div class="d-flex flex-wrap-reverse flex-column">
+    <button class="col  btn  btn-info add align-end" onclick="abrirModal('${id}')"> <i
+    class="material-icons">add</i></button>
+    </div>
+
+    `
+    var div = document.createElement('div')
+    div.innerHTML = fab.trim();
+    return div.firstChild;
 }
 
 
@@ -16,9 +35,13 @@ function quadroHeader(titulo, id){
     var header = `
     <div id="quadroHeader" class="row mb-2">
         <div class="row col"> <h5 class="my-3">${titulo}</h5> </div>
+        
         <div class="col-3 mt-2">
-        <button class="col  btn  btn-info add" onclick="abrirModal('${id}')"> <i
-            class="material-icons">add</i></button>
+
+        
+        <button class="col btn " onclick="deletaQuadro('${id}')"> <i
+            class="material-icons">close</i></button>
+
         </div>
     </div>
     `

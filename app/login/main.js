@@ -30,7 +30,7 @@ async function googleLogin(){
 }
 
 async function gitHubLogin(){
-    var url = "https://todo-list-prog-web.herokuapp.com/auth/github"
+    var url = "https://todo-auth-api.herokuapp.com/auth/github/"
     window.location = url
 }
 

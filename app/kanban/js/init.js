@@ -9,7 +9,7 @@ var idQuadroAtual = 0
 
 async function init(){
     keyListener()
-    quadros = await mockQuadroList()
+    quadros = await getApiQuadro()
     board = document.getElementById("board-columns");
     colorIndex = 0
     loadQuadros()
@@ -35,8 +35,8 @@ function loadQuadros(){
 }
 
 /* Altera o array quadros para a filtragem e chama loadQuadros()*/
-function filtrarTarefas(){
-    quadros = mockQuadroList()
+async function filtrarTarefas(){
+    quadros = await getApiQuadro()
     var busca = document.getElementById("inputText").value
     var filtrado =  []
     quadros.forEach( q => {
@@ -68,9 +68,6 @@ function keyListener(){
     })
 }
 
-
-
-
 /* Cria um novo quadro usando a barra de pesquisa como título*/
 function adicionarQuadro(quadroId, titulo, status, color){
     var element = document.getElementById("board-columns");
@@ -81,7 +78,7 @@ function adicionarQuadro(quadroId, titulo, status, color){
 
 /* Cria um novo card na tela, caso tiulo seja null usa nome default*/
 function adicionarCard(id, titulo, labels, quadroId){
-    var quadro = document.getElementById(`quadro-${quadroId}`)
+    var quadro = document.getElementById(`cards-${quadroId}`)
 
     var card = getCard(titulo, id, labels)
     quadro.append(card)
@@ -90,6 +87,11 @@ function adicionarCard(id, titulo, labels, quadroId){
 
 async function deletaCard(id){
     await deleteTasksById(id)
+    init()
+}
+
+async function deletaQuadro(id){
+    await deleteTasksColumnById(id)
     init()
 }
 
@@ -104,11 +106,11 @@ async function adicionarCardForm(){
 
 }
 
-function adicionarQuadroForm(){
+async function adicionarQuadroForm(){
     var titulo = document.getElementById("inputText-titulo").value
-    var status = document.getElementById("inputText-label").value
-    var color = document.getElementById("colorPicker").value
-    adicionarQuadro(titulo, status, color)
+    var id = window.router.getParams()
+    await postTaskColumn(titulo, id)
+    init()
 }
 
 function abrirModal(id){
